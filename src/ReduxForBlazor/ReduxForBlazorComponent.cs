@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReduxForBlazor
 {
-    public class BlazorReduxComponent<TState>: BlazorComponent
+    public class ReduxForBlazorComponent<TState>: BlazorComponent, IDisposable
     {
         protected Action<TState> updatePropsFromState;
         protected bool IsReadyToRender { get; set; } = true;
@@ -66,6 +66,11 @@ namespace ReduxForBlazor
             Store.StateChanged += Store_StateChanged;
         }
 
+        protected virtual void OnClosing()
+        {
+            Store.StateChanged -= Store_StateChanged;
+        }
+
         public Func<TState,TReturn> GetSelector<TReturn>(string selectorKey)
         {
             return Store.GetSelector<TReturn>(selectorKey);
@@ -119,6 +124,11 @@ namespace ReduxForBlazor
                 updatePropsFromState += action;
             }
             updatePropsFromState(Store.State);
+        }
+
+        public void Dispose()
+        {
+            OnClosing();
         }
 
         [Inject] public Store<TState> Store { get; set; }

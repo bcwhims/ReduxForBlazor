@@ -5,12 +5,14 @@
     <Authors>Brian Whims</Authors>
     <Company>Brian Whims</Company>
     <Description>This is the Blazor implementation of ReduxForDotNet.</Description>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/bcwhims/ReduxForBlazor</PackageProjectUrl>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.1.0" />
     <PackageReference Include="ReduxForDotNet" Version="0.1.0" />
   </ItemGroup>
 
