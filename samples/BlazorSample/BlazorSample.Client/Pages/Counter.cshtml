@@ -1,5 +1,6 @@
 ﻿@page "/counter"
-@inherits BaseComponent
+@using ReduxForBlazor
+@inherits ReduxForBlazorComponent<SampleClientState>
 
 <h1>Counter</h1>
 
@@ -8,19 +9,19 @@
 <button onclick="@IncrementCount">Click me</button>
 
 @functions {
-    int currentCount = 0;
+int currentCount = 0;
 
-    void IncrementCount()
-    {
-        Dispatch(ActionCreators.GetIncrementAction());
-    }
+void IncrementCount()
+{
+    Dispatch(ActionCreators.GetIncrementAction());
+}
 
-    protected override void OnInit()
-    {
-        base.OnInit();
-        MapStateToProps
-        (
-            Map(this, a => a.currentCount, "CURRENTCOUNT")
-        );
-    }
+protected override void OnInit()
+{
+    base.OnInit();
+    MapStateToProps
+    (
+        Map(this, a => a.currentCount, "CURRENTCOUNT")
+    );
+}
 }

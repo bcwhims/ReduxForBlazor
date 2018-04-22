@@ -1,7 +1,8 @@
 ﻿@using BlazorSample.Shared
+@using ReduxForBlazor
 @page "/fetchdata"
 @inject HttpClient Http
-@inherits BaseComponent
+@inherits ReduxForBlazorComponent<SampleClientState>
 
 <h1>Weather forecast</h1>
 
@@ -37,15 +38,15 @@ else
 }
 
 @functions {
-    WeatherForecast[] forecasts;
+WeatherForecast[] forecasts;
 
-    protected override void OnInit()
-    {
-        base.OnInit();
-        MapStateToProps
-        (
-            Map(this, a => a.forecasts, "WEATHERFORECASTS")
-        );
-        Dispatch(ActionCreators.GetWeatherForecastsAction(Http));
-    }
+protected override void OnInit()
+{
+    base.OnInit();
+    MapStateToProps
+    (
+        Map(this, a => a.forecasts, "WEATHERFORECASTS")
+    );
+    Dispatch(ActionCreators.GetWeatherForecastsAction(Http));
+}
 }
